@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BRISHACKKKK</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        img {
+            width: 100px;
+            height: auto;
+            transition: transform 0.5s ease;
+            display: block;
+            margin: 0 auto;
+        }
+        .enlarge {
+            transform: scale(10);
+            cursor: pointer;
+        }
+        .rotate-enlarge {
+            transform: scale(20) rotate(360deg);
+            cursor: pointer;
+        }
+        h2 {
+            font-family: Arial, sans-serif;
+            color: #333;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Click on this avatar and it will heal your psychological wounds</h2>
+<img id="image" src="{{ url_for('static', filename='Gun.jpeg') }}" alt="Local Image" onclick="toggleSizeAndPlayAudio()">
+
+<audio id="audio" src="{{ url_for('static', filename='Gun.mp3') }}" hidden></audio>
+
+<script>
+    let clickCount = 0;
+    function toggleSizeAndPlayAudio() {
+        var img = document.getElementById("image");
+        var audio = document.getElementById("audio");
+        clickCount++;
+
+        if (clickCount % 2 === 1) {
+            img.classList.add("enlarge");
+            img.classList.remove("rotate-enlarge");
+            audio.play();
+        } else {
+            img.classList.add("rotate-enlarge");
+            img.classList.remove("enlarge");
+            audio.pause();
+            audio.currentTime = 0;
+        }
+    }
+</script>
+
+</body>
+</html>
